@@ -12,7 +12,7 @@ export default function App() {
   return (
     <NativeBaseProvider theme={THEME}>
       <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
-      <Center flex={1} bgColor="gray.900">
+      <Center flex={1} bgColor="gray.900" p={7}>
         {
           fontsLoaded ? <SignIn /> : <Loading />
         }
