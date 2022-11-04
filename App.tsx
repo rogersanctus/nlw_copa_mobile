@@ -5,18 +5,21 @@ import { Roboto_400Regular, Roboto_500Medium, Roboto_700Bold, useFonts } from '@
 import { Loading } from './src/components/Loading'
 import React from 'react'
 import { SignIn } from './src/screens/SignIn'
+import { AuthContextProvider } from './src/contexts/AuthContext'
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold })
   
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
-      <Center flex={1} bgColor="gray.900" p={7}>
-        {
-          fontsLoaded ? <SignIn /> : <Loading />
-        }
-      </Center>
+      <AuthContextProvider>
+        <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
+        <Center flex={1} bgColor="gray.900" p={7}>
+          {
+            fontsLoaded ? <SignIn /> : <Loading />
+          }
+        </Center>
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
