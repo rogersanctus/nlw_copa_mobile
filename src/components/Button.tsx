@@ -2,7 +2,7 @@ import { Button as ButtonBase, IButtonProps, Text } from 'native-base'
 
 interface ButtonProps extends IButtonProps {
     text: string
-    variant: 'primary' | 'secondary'
+    variant?: 'primary' | 'secondary'
 }
 
 export function Button({text, variant = 'primary', ...others}: ButtonProps) {
