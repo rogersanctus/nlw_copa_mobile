@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { Text, HStack, Box } from 'native-base';
 import { CaretLeft, Export } from 'phosphor-react-native';
 
@@ -11,13 +12,14 @@ interface HeaderProps {
 
 export function Header({ title, showBackButton = false, showShareButton = false }: HeaderProps) {
   const EmptyBoxSpace = () => (<Box w={6} h={6} />);
+  const navigation = useNavigation()
 
   return (
     <HStack w="full" h={24} bgColor="gray.800" alignItems="flex-end" pb={5} px={5}>
       <HStack w="full" alignItems="center" justifyContent="space-between">
         {
           showBackButton
-            ? <ButtonIcon icon={CaretLeft} />
+            ? <ButtonIcon icon={CaretLeft} onPress={() => navigation.goBack()}/>
             : <EmptyBoxSpace />
         }
 
