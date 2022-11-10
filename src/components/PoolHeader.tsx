@@ -1,13 +1,13 @@
-import { Heading, HStack, Text, VStack } from 'native-base';
+import {Heading, HStack, Text, VStack} from 'native-base';
 
-import { PoolPros } from './PoolCard';
-import { Participants } from './Participants';
+import {PoolPros} from './PoolCard';
+import {Participants} from './Participants';
 
 interface PoolHeaderProps {
   data: PoolPros;
 }
 
-export function PoolHeader({ data }: PoolHeaderProps) {
+export function PoolHeader({data}: PoolHeaderProps) {
   return (
     <HStack
       w="full"
@@ -18,8 +18,7 @@ export function PoolHeader({ data }: PoolHeaderProps) {
       justifyContent="space-between"
       alignItems="center"
       mb={3}
-      p={4}
-    >
+      p={4}>
       <VStack>
         <Heading color="white" fontSize="md" fontFamily="heading">
           {data.title}

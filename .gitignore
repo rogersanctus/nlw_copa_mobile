@@ -11,6 +11,8 @@ web-build/
 
 # android
 **/.gradle/
+android/app/**/assets
+android/**/google-services.json
 
 # macOS
 .DS_Store
