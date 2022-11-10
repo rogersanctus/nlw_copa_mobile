@@ -1,5 +1,4 @@
 node_modules/
-.expo/
 dist/
 npm-debug.*
 *.jks
@@ -10,5 +9,59 @@ npm-debug.*
 *.orig.*
 web-build/
 
+# android
+**/.gradle/
+
 # macOS
 .DS_Store
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Ruby Gems (Bundler)
+/vendor
+/template/vendor
+
+# iOS / CocoaPods
+/template/ios/build/
+/template/ios/Pods/
+/template/ios/Podfile.lock
+/packages/rn-tester/Gemfile.lock
+
+# general
+build/
+/clear/
+*.hprof
+
+# editors
+.vscode
+.idea
+local.properties
+*.iml
+
+# buck
+buck-out/
+\.buckd/
+android/app/libs
+*.keystore
+
+# Thumbnails
+._*
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+*.jsbundle
