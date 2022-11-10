@@ -3,6 +3,7 @@ import {SignIn} from '../screens/SignIn';
 import {AppRoutes} from './app.routes';
 
 import {useAuth} from '../hooks/useAuth';
+import {Box} from 'native-base';
 
 function UserScreen() {
   const {isUserLoggedIn} = useAuth();
@@ -20,8 +21,10 @@ function UserScreen() {
 export function Routes() {
   console.log('Rendering Routes...');
   return (
-    <NavigationContainer>
-      <UserScreen />
-    </NavigationContainer>
+    <Box flex={1} bg="gray.900">
+      <NavigationContainer>
+        <UserScreen />
+      </NavigationContainer>
+    </Box>
   );
 }
