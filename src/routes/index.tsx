@@ -7,14 +7,11 @@ import {Box} from 'native-base';
 
 function UserScreen() {
   const {isUserLoggedIn} = useAuth();
-  console.log('User logged in: ', isUserLoggedIn);
 
   if (isUserLoggedIn) {
-    console.log('Rendering AppRoutes...');
     return <AppRoutes />;
   }
 
-  console.log('Rendering SignIn...');
   return <SignIn />;
 }
 
