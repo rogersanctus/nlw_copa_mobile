@@ -12,9 +12,9 @@ export interface PoolPros {
   owner: {
     name: string;
   };
-  participants: ParticipantProps[];
+  usersAtPoll: ParticipantProps[];
   _count: {
-    participants: number;
+    usersAtPoll: number;
   };
 }
 
@@ -47,8 +47,8 @@ export function PoolCard({data, ...others}: PoolCardProps) {
         </VStack>
 
         <Participants
-          count={data._count.participants}
-          participants={data.participants}
+          count={data._count.usersAtPoll}
+          participants={data.usersAtPoll}
         />
       </HStack>
     </TouchableOpacity>
