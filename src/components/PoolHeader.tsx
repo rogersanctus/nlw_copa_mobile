@@ -36,8 +36,8 @@ export function PoolHeader({data}: PoolHeaderProps) {
       </VStack>
 
       <Participants
-        count={data._count?.participants}
-        participants={data.participants}
+        count={data._count?.usersAtPoll}
+        participants={data.usersAtPoll}
       />
     </HStack>
   );
