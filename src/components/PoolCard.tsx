@@ -4,7 +4,7 @@ import {Heading, HStack, Text, VStack} from 'native-base';
 import {Participants, ParticipantProps} from './Participants';
 import {useNavigation} from '@react-navigation/native';
 
-export interface PoolPros {
+export interface PoolProps {
   id: string;
   code: string;
   title: string;
@@ -20,7 +20,7 @@ export interface PoolPros {
 }
 
 interface PoolCardProps extends TouchableOpacityProps {
-  data: PoolPros;
+  data: PoolProps;
 }
 
 export function PoolCard({data, ...others}: PoolCardProps) {

@@ -6,17 +6,17 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useCallback, useState} from 'react';
 import {api} from '../lib/api';
 import {useToastAlert} from '../components/ToastAlert';
-import {PoolCard, PoolPros} from '../components/PoolCard';
+import {PoolCard, PoolProps} from '../components/PoolCard';
 import {Loading} from '../components/Loading';
 import {EmptyPoolList} from '../components/EmptyPoolList';
 
 export function Pools() {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
-  const [pools, setPools] = useState<PoolPros[]>([]);
+  const [pools, setPools] = useState<PoolProps[]>([]);
   const toast = useToastAlert();
 
-  const RenderPoolCard = useCallback((data: {item: PoolPros}) => {
+  const RenderPoolCard = useCallback((data: {item: PoolProps}) => {
     return <PoolCard data={data.item} />;
   }, []);
 
@@ -28,7 +28,7 @@ export function Pools() {
       (async function () {
         try {
           setIsLoading(true);
-          const {data} = await api.get<PoolPros[]>('/pools', {
+          const {data} = await api.get<PoolProps[]>('/pools', {
             signal: abortController.signal,
           });
           setPools(data);

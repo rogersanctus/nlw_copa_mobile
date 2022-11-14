@@ -4,7 +4,7 @@ import {Header} from '../components/Header';
 import {useCallback, useState} from 'react';
 import {api} from '../lib/api';
 import {Loading} from '../components/Loading';
-import {PoolPros} from '../components/PoolCard';
+import {PoolProps} from '../components/PoolCard';
 import {PoolHeader} from '../components/PoolHeader';
 import {Option} from '../components/Option';
 import {EmptyPoolUserList} from '../components/EmptyPoolUserList';
@@ -15,7 +15,7 @@ export function PoolDetails() {
   const route = useRoute<RouteProp<ReactNavigation.RootParamList, 'details'>>();
   const {id} = route.params;
   const [isLoading, setIsLoading] = useState(true);
-  const [poolDetails, setPoolDetails] = useState({} as PoolPros);
+  const [poolDetails, setPoolDetails] = useState({} as PoolProps);
   const [tabOption, setTabOption] = useState<TabOption>('palpites');
 
   useFocusEffect(
@@ -25,7 +25,7 @@ export function PoolDetails() {
       (async function () {
         try {
           setIsLoading(true);
-          const {data} = await api.get<PoolPros>('/pools/' + id, {
+          const {data} = await api.get<PoolProps>('/pools/' + id, {
             signal: abortController.signal,
           });
 
