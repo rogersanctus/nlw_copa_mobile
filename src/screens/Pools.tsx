@@ -32,7 +32,6 @@ export function Pools() {
             signal: abortController.signal,
           });
           setPools(data);
-          console.log('Pools: ', data);
         } catch (error) {
           toast.show({
             title: 'Lista de Bolões',
