@@ -1,6 +1,8 @@
+import {ParamListBase} from '@react-navigation/native';
+
 declare global {
   namespace ReactNavigation {
-    interface RootParamList {
+    interface RootParamList extends ParamListBase {
       new: undefined;
       polls: undefined;
       find: undefined;
