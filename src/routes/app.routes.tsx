@@ -6,6 +6,7 @@ import {NewPool} from '../screens/NewPool';
 import {Pools} from '../screens/Pools';
 import {FindPool} from '../screens/FindPool';
 import {useCallback} from 'react';
+import {PoolDetails} from '../screens/PoolDetails';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -42,7 +43,8 @@ export function AppRoutes() {
           position: 'relative',
           top: Platform.OS === 'android' ? -3 : 0,
         },
-      }}>
+      }}
+      backBehavior="history">
       <Screen
         name="new"
         component={NewPool}
@@ -65,6 +67,11 @@ export function AppRoutes() {
         options={{
           tabBarButton: () => null,
         }}
+      />
+      <Screen
+        name="details"
+        component={PoolDetails}
+        options={{tabBarButton: () => null}}
       />
     </Navigator>
   );
