@@ -2,6 +2,7 @@ import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import {Heading, HStack, Text, VStack} from 'native-base';
 
 import {Participants, ParticipantProps} from './Participants';
+import {useNavigation} from '@react-navigation/native';
 
 export interface PoolPros {
   id: string;
@@ -23,8 +24,12 @@ interface PoolCardProps extends TouchableOpacityProps {
 }
 
 export function PoolCard({data, ...others}: PoolCardProps) {
+  const {navigate} = useNavigation();
+
   return (
-    <TouchableOpacity {...others}>
+    <TouchableOpacity
+      {...others}
+      onPress={() => navigate('details', {id: data.id})}>
       <HStack
         w="full"
         h={20}
