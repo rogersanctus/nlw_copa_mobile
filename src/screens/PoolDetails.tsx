@@ -8,6 +8,7 @@ import {PoolProps} from '../components/PoolCard';
 import {PoolHeader} from '../components/PoolHeader';
 import {Option} from '../components/Option';
 import {EmptyPoolUserList} from '../components/EmptyPoolUserList';
+import {Share} from 'react-native';
 
 type TabOption = 'palpites' | 'ranking';
 
@@ -15,8 +16,17 @@ export function PoolDetails() {
   const route = useRoute<RouteProp<ReactNavigation.RootParamList, 'details'>>();
   const {id} = route.params;
   const [isLoading, setIsLoading] = useState(true);
-  const [poolDetails, setPoolDetails] = useState({} as PoolProps);
+  const [poolDetails, setPoolDetails] = useState<PoolProps | null>(null);
   const [tabOption, setTabOption] = useState<TabOption>('palpites');
+
+  function handleSharePoolCode() {
+    if (poolDetails) {
+      Share.share({
+        message: poolDetails?.code,
+        title: 'Compartilhar código do bolão',
+      });
+    }
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -43,7 +53,7 @@ export function PoolDetails() {
 
   const TabOptions = useCallback(() => {
     return (
-      <HStack p={1} bg="gray.800" rounded="sm">
+      <HStack p={1} bg="gray.800" rounded="sm" mt={3}>
         <Option
           title="Seus palpites"
           isSelected={tabOption === 'palpites'}
@@ -59,13 +69,13 @@ export function PoolDetails() {
   }, [tabOption]);
 
   const Details = useCallback(() => {
-    if (poolDetails._count.usersAtPoll <= 0) {
+    if (poolDetails && poolDetails._count.usersAtPoll <= 0) {
       return <EmptyPoolUserList code={poolDetails.code} />;
     }
 
     return (
       <VStack px={5} flex={1}>
-        <PoolHeader data={poolDetails} />
+        {poolDetails ? <PoolHeader data={poolDetails} /> : null}
         <TabOptions />
       </VStack>
     );
@@ -74,8 +84,12 @@ export function PoolDetails() {
   return (
     <VStack flex={1} bg="gray.900">
       <Header
-        title={isLoading ? 'Carregando...' : poolDetails.title.toUpperCase()}
+        title={
+          isLoading ? 'Carregando...' : poolDetails?.title.toUpperCase() ?? ''
+        }
         showBackButton
+        showShareButton
+        onSharePress={handleSharePoolCode}
       />
       {isLoading ? <Loading /> : <Details />}
     </VStack>
