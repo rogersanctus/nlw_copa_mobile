@@ -86,6 +86,16 @@ export const useToastAlert = () => {
 
   return {
     show: (props: ToastAlertProps) => {
+      if ('description' in props && typeof props.description !== 'string') {
+        props.description = '';
+        console.warn('ToastAlert: description property is not a string');
+      }
+
+      if ('title' in props && typeof props.title !== 'string') {
+        props.title = 'Alert';
+        console.warn('ToastAlert: title property is not a string');
+      }
+
       toastRef.current = toast.show({
         render: ({id}) => {
           return <ToastAlert toast={toast} id={id} {...props} />;
