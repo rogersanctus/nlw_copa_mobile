@@ -4,7 +4,7 @@ import {X, Check} from 'phosphor-react-native';
 
 import {Team} from './Team';
 
-interface GuessProps {
+interface GuessType {
   id: string;
   gameId: string;
   createdAt: string;
@@ -13,15 +13,15 @@ interface GuessProps {
   secondTeamPoints: number;
 }
 
-export interface GameProps {
+export interface GameType {
   id: string;
   firstTeamCountryCode: string;
   secondTeamCountryCode: string;
-  guess: null | GuessProps;
+  guess: null | GuessType;
 }
 
 interface GameComponentProps {
-  data: GameProps;
+  data: GameType;
   onGuessConfirm: () => void;
   setFirstTeamPoints: (value: string) => void;
   setSecondTeamPoints: (value: string) => void;
