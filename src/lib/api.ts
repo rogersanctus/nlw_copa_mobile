@@ -4,11 +4,23 @@ export const api = axios.create({
   baseURL: 'http://192.168.0.2:3333',
 });
 
-interface ApiError {
-  _kind: string;
+export class ApiError extends Error {
   status: number;
   message: string;
   messages?: string[];
+
+  constructor(
+    status: number,
+    message: string,
+    messages: string[] | undefined = undefined,
+  ) {
+    super(message);
+    this.status = status;
+    this.message = message;
+    this.messages = messages;
+
+    Object.setPrototypeOf(this, ApiError);
+  }
 }
 
 api.interceptors.request.use(
@@ -21,11 +33,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   value => value,
   error => {
-    const apiError: ApiError = {
-      _kind: 'ApiError',
-      status: 500,
-      message: 'Erro desconhecido',
-    };
+    const apiError = new ApiError(500, 'Erro desconhecido');
 
     if (axios.isCancel(error)) {
       apiError.message = error.message ?? 'Request canceled';
@@ -52,7 +60,3 @@ api.interceptors.response.use(
     return Promise.reject<ApiError>(apiError);
   },
 );
-
-export function isApiError(error: any): error is ApiError {
-  return (error as ApiError)?._kind === 'ApiError';
-}

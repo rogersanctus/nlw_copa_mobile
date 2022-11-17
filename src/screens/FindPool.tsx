@@ -4,12 +4,11 @@ import {Input} from '../components/Input';
 
 import {Button} from '../components/Button';
 import {useCallback, useState} from 'react';
-import {api} from '../lib/api';
+import {api, ApiError} from '../lib/api';
 import {PoolProps} from '../components/PoolCard';
 import {Loading} from '../components/Loading';
 import {PoolHeader} from '../components/PoolHeader';
 import {useToastAlert} from '../components/ToastAlert';
-import axios from 'axios';
 
 export function FindPool() {
   const [poolCode, setPoolCode] = useState<string | null>(null);
@@ -56,16 +55,14 @@ export function FindPool() {
         status: 'success',
       });
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const {message} = error.response?.data;
-
+      if (error instanceof ApiError) {
         toast.show({
           title: 'Erro ao juntar-se ao bolão',
-          description: message,
+          description: error.message,
           status: 'warning',
         });
-        console.error(error.response?.data ?? error);
       }
+      console.error(error);
     } finally {
       setIsProcessing(false);
     }

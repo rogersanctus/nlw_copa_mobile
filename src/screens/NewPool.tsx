@@ -5,7 +5,7 @@ import {Input} from '../components/Input';
 import Logo from '../assets/logo.svg';
 import {Button} from '../components/Button';
 import {useState} from 'react';
-import {api} from '../lib/api';
+import {api, ApiError} from '../lib/api';
 import {useToastAlert} from '../components/ToastAlert';
 
 export function NewPool() {
@@ -41,11 +41,13 @@ export function NewPool() {
 
       setPoolName('');
     } catch (error) {
-      toast.show({
-        title: 'Novo Bolão',
-        description: (error as any).message,
-        status: 'error',
-      });
+      if (error instanceof ApiError) {
+        toast.show({
+          title: 'Novo Bolão',
+          description: error.message,
+          status: 'error',
+        });
+      }
       console.error(error);
     } finally {
       setIsLoading(false);

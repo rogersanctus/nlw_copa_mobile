@@ -4,7 +4,7 @@ import {Button} from '../components/Button';
 import Octicons from 'react-native-vector-icons/Octicons';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useCallback, useState} from 'react';
-import {api} from '../lib/api';
+import {api, ApiError} from '../lib/api';
 import {useToastAlert} from '../components/ToastAlert';
 import {PoolCard, PoolProps} from '../components/PoolCard';
 import {Loading} from '../components/Loading';
@@ -33,11 +33,14 @@ export function Pools() {
           });
           setPools(data);
         } catch (error) {
-          toast.show({
-            title: 'Lista de Bolões',
-            description: (error as any).message,
-          });
-          console.error(error);
+          if (error instanceof ApiError) {
+            toast.show({
+              title: 'Lista de Bolões',
+              description: error.message,
+            });
+          } else {
+            console.error(error);
+          }
         } finally {
           setIsLoading(false);
         }
