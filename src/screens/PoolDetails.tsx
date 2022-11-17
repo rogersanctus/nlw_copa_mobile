@@ -9,6 +9,7 @@ import {PoolHeader} from '../components/PoolHeader';
 import {Option} from '../components/Option';
 import {EmptyPoolUserList} from '../components/EmptyPoolUserList';
 import {Share} from 'react-native';
+import {Guesses} from '../components/Guesses';
 
 type TabOption = 'palpites' | 'ranking';
 
@@ -77,6 +78,8 @@ export function PoolDetails() {
       <VStack px={5} flex={1}>
         {poolDetails ? <PoolHeader data={poolDetails} /> : null}
         <TabOptions />
+
+        <Guesses poolId={poolDetails?.id} />
       </VStack>
     );
   }, [poolDetails, TabOptions]);
