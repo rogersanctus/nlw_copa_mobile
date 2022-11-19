@@ -520,7 +520,7 @@ function getCountryNameTranslated({
   const country = getCountry({alpha2Code, alpha3Code});
 
   if (country) {
-    return i18n.t(country.name);
+    return i18n.t(`countries.${country.name}`);
   }
 
   return undefined;
