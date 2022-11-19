@@ -22,6 +22,7 @@ export interface GameType {
 
 interface GameComponentProps {
   data: GameType;
+  isLoading: boolean;
   onGuessConfirm: () => void;
   setFirstTeamPoints: (value: string) => void;
   setSecondTeamPoints: (value: string) => void;
@@ -29,6 +30,7 @@ interface GameComponentProps {
 
 export function Game({
   data,
+  isLoading,
   setFirstTeamPoints,
   setSecondTeamPoints,
   onGuessConfirm,
@@ -81,7 +83,8 @@ export function Game({
           w="full"
           bgColor="green.500"
           mt={4}
-          onPress={onGuessConfirm}>
+          onPress={onGuessConfirm}
+          isLoading={isLoading}>
           <HStack alignItems="center">
             <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
               CONFIRMAR PALPITE
