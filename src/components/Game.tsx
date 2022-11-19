@@ -4,7 +4,7 @@ import {getCountryName} from '../lib/country-list';
 
 import {Team} from './Team';
 
-interface GuessType {
+export interface GuessType {
   id: string;
   gameId: string;
   createdAt: string;
@@ -65,6 +65,8 @@ export function Game({
         <Team
           code={data.firstTeamCountryCode}
           position="right"
+          points={data.guess?.firstTeamPoints}
+          isDisabled={!!data.guess}
           onChangeText={setFirstTeamPoints}
         />
 
@@ -73,6 +75,8 @@ export function Game({
         <Team
           code={data.secondTeamCountryCode}
           position="left"
+          points={data.guess?.secondTeamPoints}
+          isDisabled={!!data.guess}
           onChangeText={setSecondTeamPoints}
         />
       </HStack>
