@@ -6,6 +6,9 @@ import {AuthContextProvider} from './src/contexts/AuthContext';
 import {useEffect} from 'react';
 
 import SplashScreen from 'react-native-splash-screen';
+import {LogBox} from 'react-native';
+
+LogBox.ignoreAllLogs();
 
 export default function App() {
   useEffect(() => {
